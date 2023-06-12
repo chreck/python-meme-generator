@@ -1,0 +1,2 @@
+class MemeEngine:
+    pass
