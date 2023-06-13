@@ -10,9 +10,9 @@ import os
 class MemeEngine:
     """Engine to generate a meme."""
 
-    def __init__(self, cache_path: str):
+    def __init__(self, output_dir: str):
         """Provide the path where the image can be stored."""
-        self.cache_path = cache_path
+        self.output_dir = output_dir
 
     def make_meme(self, img_path: str, text: str, author: str, width: int = 500) -> str:
         """Make a meme from the img_path, with a text and the author.
@@ -29,16 +29,16 @@ class MemeEngine:
             Exception: Raise exception if reading or saving of the image path can not be done.
 
         Returns:
-            str: _description_
+            str: The path of the output image.
         """
         if not os.path.exists(img_path):
-            raise Exception("The image path {img_path} does not exists")
+            raise Exception(f"The image path {img_path} does not exists")
 
-        if not os.path.exists(self.cache_path):
+        if not os.path.exists(self.output_dir):
             try:
-                os.mkdir(self.cache_path)
+                os.mkdir(self.output_dir)
             except:
-                raise Exception("Could not create the cache folder {self.cache_path}")
+                raise Exception(f"Could not create the output folder {self.output_dir}")
 
         try:
             im = Image.open(img_path)
@@ -57,7 +57,7 @@ class MemeEngine:
             d.text(xy, message, align="center", font=fnt, fill='black', stroke_width=3, stroke_fill='white')
 
             # save the image
-            out_path = f"{self.cache_path}/{random.randint(0,1000000)}.png"
+            out_path = f"{self.output_dir}/{random.randint(0,1000000)}.png"
             im.save(out_path)
             return out_path
         except Exception as e:
