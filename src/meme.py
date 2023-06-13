@@ -28,11 +28,11 @@ def setup_images(image_path=None) -> List | None:
 
     return image_files
 
-def setup_quotes(quote_files: os.Path | str=None) -> List[QuoteModel]:
+def setup_quotes(quote_files: str=None) -> List[QuoteModel]:
     """Return quotes from a list of quote files. Parse the quote file and extract the quotes.
 
     Args:
-        quote_files (Path | str, optional): Path or string of the quote files
+        quote_files (str, optional): Path or string of the quote files
 
     Returns:
         List: A list of QuoteModel
@@ -51,14 +51,14 @@ def setup_quotes(quote_files: os.Path | str=None) -> List[QuoteModel]:
 
     return quotes
 
-def random_image(image_files: List[os.Path | str]) -> os.Path | str:
+def random_image(image_files: List[str]) -> str:
     """Generate a random image from image files.
 
     Args:
         image_files (List): List of image files
 
     Returns:
-        os.Path | str: Return a path or string to the image file
+        str: Return a path or string to the image file
     """
     return random.choice(image_files)
 
