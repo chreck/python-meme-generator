@@ -1,4 +1,3 @@
-
 """The quote model to save one quote and the author of the quote."""
 
 class QuoteModel:

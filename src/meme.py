@@ -9,7 +9,8 @@ import random
 from typing import List
 
 from config import PHOTOS_PATH, DATA_ROOT, TMP_ROOT
-from QuoteEngine import Ingestor, MemeEngine, QuoteModel
+from QuoteEngine import Ingestor, QuoteModel
+from MemeGenerator import MemeEngine
 
 def setup_images(image_path=None) -> List | None:
     """Return image files from an image path. Parse the path and return the paths to the images.
