@@ -1,3 +1,7 @@
+"""Main application as a CLI.
+
+Calling this file to run the CLI.
+"""
 import argparse
 import pathlib
 

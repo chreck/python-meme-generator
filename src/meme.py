@@ -1,23 +1,43 @@
+"""The meme helper functions for setup image paths and quotes.
 
-import random
+Selection of an image or quote in a list.
+
+Generation of the meme by an image and a quote.
+"""
 import os
+import random
+from typing import List
 
-from QuoteEngine import MemeEngine, QuoteModel
-from QuoteEngine import Ingestor
 from config import PHOTOS_PATH, DATA_ROOT, TMP_ROOT
+from QuoteEngine import Ingestor, MemeEngine, QuoteModel
 
-def setup_images(image_path=None):
+def setup_images(image_path=None) -> List | None:
+    """Return image files from an image path. Parse the path and return the paths to the images.
 
-    images = None
+    Args:
+        image_path (any, optional): The string or path to the images. Defaults to None.
+
+    Returns:
+        List: The list of images or None.
+    """
+    image_files = None
     if image_path:
-        images = []
-        for root, dirs, files in os.walk(image_path):
-            images = [os.path.join(root, name) for name in files]
+        image_files = []
+        for root, _, files in os.walk(image_path):
+            image_files = [os.path.join(root, file_name) for file_name in files]
 
-    return images
+    return image_files
 
-def setup_quotes(quote_files=None):
+def setup_quotes(quote_files: os.Path | str=None) -> List[QuoteModel]:
+    """Return quotes from a list of quote files. Parse the quote file and extract the quotes.
 
+    Args:
+        quote_files (Path | str, optional): Path or string of the quote files
+
+    Returns:
+        List: A list of QuoteModel
+
+    """
     if not quote_files:
         quote_files = [DATA_ROOT / 'DogQuotes/DogQuotesTXT.txt',
                        DATA_ROOT / 'DogQuotes/DogQuotesDOCX.docx',
@@ -31,31 +51,60 @@ def setup_quotes(quote_files=None):
 
     return quotes
 
-def random_image(imgs):
-    return random.choice(imgs)
+def random_image(image_files: List[os.Path | str]) -> os.Path | str:
+    """Generate a random image from image files.
 
-def random_quote(quotes):
+    Args:
+        image_files (List): List of image files
+
+    Returns:
+        os.Path | str: Return a path or string to the image file
+    """
+    return random.choice(image_files)
+
+def random_quote(quotes: List[QuoteModel]) -> QuoteModel:
+    """Generate a random quote form a list of quotes.
+
+    Args:
+        quotes (List[QuoteModel]): The list of quotes.
+
+    Returns:
+        QuoteModel: Return the random selected quote model.
+    """
     return random.choice(quotes)
 
-def generate_meme(path=None, body=None, author=None):
-    """ Generate a meme given an path and a quote """
-    image = None
+def generate_meme(path=None, body: str=None, author: str=None) -> str:
+    """Generate a meme from an image and a quote.
+
+    Args:
+        path (any, optional): The path can be a folder or a file. Defaults to None.
+        body (str, optional): The body text of the quote. Defaults to None.
+        author (str, optional): The author of the quote. Defaults to None.
+
+    Raises:
+        Exception: Raise an exception if the image path is not existing or the author is missing
+            when the body text is present.
+
+    Returns:
+        str: Return the path of the generate image.
+    """
+    image_file = None
     quote = None
-    image_path = None
+    image_folder = None
 
     if path is None:
-        image_path = PHOTOS_PATH
+        image_folder = PHOTOS_PATH
     else:
-        if os.path.isdir(path[0]):
-            image_path = path[0]
-        elif os.path.exists(path[0]):
-            image = path[0]
+        if os.path.isdir(path):
+            image_folder = path
+        elif os.path.isfile(path):
+            image_file = path
         else:
             raise Exception(f"Image path {path} does not exist.")
 
-    if image_path:
-        images = setup_images(image_path)
-        image = random_image(images)
+    if image_folder:
+        image_files = setup_images(image_folder)
+        image_file = random_image(image_files)
 
     if body is None:
         quotes = setup_quotes()
@@ -66,5 +115,5 @@ def generate_meme(path=None, body=None, author=None):
         quote = QuoteModel(body, author)
 
     meme = MemeEngine(TMP_ROOT)
-    path = meme.make_meme(image, quote.body, quote.author)
+    path = meme.make_meme(image_file, quote.body, quote.author)
     return path
