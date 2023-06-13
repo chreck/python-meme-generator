@@ -5,10 +5,9 @@ The docx formatting lines are defined by "quote - author".
 
 from typing import List
 import docx
-from os.path import exists
 
-from IngestorInterface import IngestorInterface
-from QuoteModel import QuoteModel
+from .IngestorInterface import IngestorInterface
+from .QuoteModel import QuoteModel
 
 class DocxIngestor(IngestorInterface):
     """The DocxIngestor implementation which supports Word Documents docx files."""

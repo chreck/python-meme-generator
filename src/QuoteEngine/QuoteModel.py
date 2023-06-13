@@ -4,9 +4,9 @@
 class QuoteModel:
     """The model to save the quote and the author."""
 
-    def __init__(self, quote: str, author: str):
-        """Init the model with quote an author."""
-        self.quote = quote
+    def __init__(self, body: str, author: str):
+        """Init the model with body and author."""
+        self.body = body
         self.author = author
 
     def __str__(self) -> str:
@@ -15,7 +15,7 @@ class QuoteModel:
         Returns:
             str: The string of this model.
         """
-        return f"QuoteModel: quote={self.quote}, author:{self.author}"
+        return f"QuoteModel: body={self.body}, author:{self.author}"
 
     def __repr__(self) -> str:
         """Model representation.
@@ -23,4 +23,4 @@ class QuoteModel:
         Returns:
             str: Return a string as a machine code representation.
         """
-        return f"QuoteModel(quote={self.quote}, author={self.author})"
+        return f"QuoteModel(body={self.body}, author={self.author})"

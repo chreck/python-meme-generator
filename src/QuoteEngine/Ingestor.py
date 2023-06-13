@@ -7,13 +7,13 @@ The method `parse` parses automatically by the given file name extension and ret
 
 from typing import List
 
-from IngestorInterface import IngestorInterface
-from DocxIngestor import DocxIngestor
-from CSVIngestor import CSVIngestor
-from PDFIngestor import PDFIngestor
-from TextIngestor import TextIngestor
+from .IngestorInterface import IngestorInterface
+from .DocxIngestor import DocxIngestor
+from .CSVIngestor import CSVIngestor
+from .PDFIngestor import PDFIngestor
+from .TextIngestor import TextIngestor
 
-from QuoteModel import QuoteModel
+from .QuoteModel import QuoteModel
 
 class Ingestor(IngestorInterface):
     """The ingestor class parses docx, csv, pdf and text files."""

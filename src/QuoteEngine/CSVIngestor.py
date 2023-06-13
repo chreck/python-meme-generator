@@ -6,8 +6,8 @@ The csv formatting lines are separated by CSV specific style.
 from typing import List
 import pandas
 
-from IngestorInterface import IngestorInterface
-from QuoteModel import QuoteModel
+from .IngestorInterface import IngestorInterface
+from .QuoteModel import QuoteModel
 
 class CSVIngestor(IngestorInterface):
     """The CSVIngestor implementation which supports CSV files."""

@@ -1,5 +1,6 @@
 """Init file for all ingestors."""
-import DocxIngestor
-import CSVIngestor
-import PDFIngestor
-import Ingestor
+from .DocxIngestor import DocxIngestor
+from .CSVIngestor import CSVIngestor
+from .PDFIngestor import PDFIngestor
+from .Ingestor import Ingestor
+from .MemeEngine import MemeEngine

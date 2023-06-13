@@ -8,8 +8,8 @@ import subprocess
 import os
 import random
 
-from IngestorInterface import IngestorInterface
-from QuoteModel import QuoteModel
+from .IngestorInterface import IngestorInterface
+from .QuoteModel import QuoteModel
 
 class PDFIngestor(IngestorInterface):
     """The PDFIngestor implementation which supports PDF files."""
@@ -39,7 +39,8 @@ class PDFIngestor(IngestorInterface):
         models = []
         tmp: str = None
         try:
-            os.mkdir('./tmp')
+            if not os.path.exists('./tmp'):
+                os.mkdir('./tmp')
             tmp = f'./tmp/{random.randint(0,100000000)}.txt'
             subprocess.call(['pdftotext', '-simple', path, tmp])
 
