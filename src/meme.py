@@ -8,7 +8,7 @@ import os
 import random
 from typing import List
 
-from config import PHOTOS_PATH, DATA_ROOT, TMP_ROOT
+from config import PHOTOS_PATH, DATA_ROOT, TMP_ROOT, FONT
 from QuoteEngine import Ingestor, QuoteModel
 from MemeGenerator import MemeEngine
 
@@ -116,5 +116,5 @@ def generate_meme(path=None, body: str=None, author: str=None) -> str:
         quote = QuoteModel(body, author)
 
     meme = MemeEngine(TMP_ROOT)
-    path = meme.make_meme(image_file, quote.body, quote.author)
+    path = meme.make_meme(image_file, quote.body, quote.author, font=FONT)
     return path

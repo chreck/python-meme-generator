@@ -4,7 +4,9 @@ import pathlib
 
 PROJECT_ROOT = pathlib.Path(__file__).parent.resolve()
 DATA_ROOT = PROJECT_ROOT / "_data"
-PHOTOS_PATH = DATA_ROOT / "photos/dog/"
+FONTS_ROOT = DATA_ROOT / "fonts"
+FONT = str(FONTS_ROOT / "IBMPlexSans-Bold.ttf")
+PHOTOS_PATH = DATA_ROOT / "photos/dog"
 TMP_ROOT = PROJECT_ROOT / "_tmp"
 STATIC_ROOT = PROJECT_ROOT / "static"
 QUOTE_FILES = [
