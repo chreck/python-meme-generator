@@ -20,6 +20,7 @@ class ImageGenerator:
         self.input_image = input_image
         self.output_image = output_image
         self.font = ImageFont.truetype(font_file, 20)
+        self.stroke_width = 3
 
     def get_image(self, message: str, width: int) -> str:
         """Get the image with the message centered.
@@ -48,17 +49,21 @@ class ImageGenerator:
     def __resize(self):
         """Resize the image to width and height."""
         self.__calculate_height()
-        self.image = self.image.resize((self.width, self.height))
+        size = (
+            self.width, self.height
+        )
+        self.image = self.image.resize(size)
 
     def __calculate_height(self):
         """Calculate the height by the given width."""
         self.factor = self.image.height / self.image.width
-        self.height = self.factor * self.width
+        self.height = int(self.factor * self.width)
 
     def __draw_text(self):
         """Draw the text into the image."""
         self.draw = ImageDraw.Draw(self.image)
-        self.__calculate_message_max_width()
+        self.__calculate_message_height()
+        self.__calculate_message_width()
         self.__calculate_xy_message()
         self.draw.text(
             self.xy_message,
@@ -66,11 +71,11 @@ class ImageGenerator:
             align="center",
             font=self.font,
             fill='black',
-            stroke_width=3,
+            stroke_width=self.stroke_width,
             stroke_fill='white'
         )
 
-    def __calculate_message_max_width(self):
+    def __calculate_message_width(self):
         """Calculate the maximum width of the text itself to center it."""
         lines = self.message.split('\n')
         max_width = 0
@@ -79,9 +84,19 @@ class ImageGenerator:
                 line, self.font,
             )
             max_width = max(max_width, line_width)
-        self.message_width_max = min(max_width, self.width)
+        self.message_width = min(max_width, self.width)
 
     def __calculate_xy_message(self):
         """Calculate the x and y to center the text in the image."""
-        x = (self.width - self.message_width_max) / 2
-        self.xy_message = (x, 350)
+        x = (self.width  / 2) - ( self.message_width / 2)
+        y = self.height - self.message_height - 50
+        self.xy_message = (x, y)
+
+    def __calculate_message_height(self):
+        # tuple(width, height)
+        size: tuple = self.font.getsize(
+            self.message,
+            stroke_width=self.stroke_width,
+        )
+        (width, height) = size
+        self.message_height = height

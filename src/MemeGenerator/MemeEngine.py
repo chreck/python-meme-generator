@@ -1,7 +1,8 @@
 """Create a meme from an image and a given text.
 
-Provide the image path, the text and the author of the text. Optionally you can define
-the width of the image.
+Provide the image path, the text and the author of the text.
+Provide the font to be used for the text and author.
+Optionally you can define the width of the image.
 """
 import random
 import os
