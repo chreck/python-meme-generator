@@ -8,9 +8,9 @@ import os
 import random
 from typing import List
 
-from .config import DATA_ROOT, FONT, PHOTOS_PATH, TMP_ROOT
-from .MemeGenerator import MemeEngine
-from .QuoteEngine import Ingestor, QuoteModel
+from app.config import Config
+from app.MemeGenerator import MemeEngine
+from app.QuoteEngine import Ingestor, QuoteModel
 
 
 def setup_images(image_path=None) -> List | None:
@@ -43,10 +43,10 @@ def setup_quotes(quote_files: str = None) -> List[QuoteModel]:
     """
     if not quote_files:
         quote_files = [
-            DATA_ROOT / "DogQuotes/DogQuotesTXT.txt",
-            DATA_ROOT / "DogQuotes/DogQuotesDOCX.docx",
-            DATA_ROOT / "DogQuotes/DogQuotesPDF.pdf",
-            DATA_ROOT / "DogQuotes/DogQuotesCSV.csv",
+            Config.DATA_ROOT / "DogQuotes/DogQuotesTXT.txt",
+            Config.DATA_ROOT / "DogQuotes/DogQuotesDOCX.docx",
+            Config.DATA_ROOT / "DogQuotes/DogQuotesPDF.pdf",
+            Config.DATA_ROOT / "DogQuotes/DogQuotesCSV.csv",
         ]
     quotes = []
     for file in quote_files:
@@ -101,7 +101,7 @@ def generate_meme(path=None, body: str = None, author: str = None) -> str:
     image_folder = None
 
     if path is None:
-        image_folder = PHOTOS_PATH
+        image_folder = Config.PHOTOS_PATH
     else:
         if os.path.isdir(path):
             image_folder = path
@@ -122,6 +122,6 @@ def generate_meme(path=None, body: str = None, author: str = None) -> str:
             raise Exception("Author Required if Body is Used")
         quote = QuoteModel(body, author)
 
-    meme = MemeEngine(TMP_ROOT)
-    path = meme.make_meme(image_file, quote.body, quote.author, font=FONT)
+    meme = MemeEngine(Config.TMP_ROOT)
+    path = meme.make_meme(image_file, quote.body, quote.author, font=Config.FONT)
     return path

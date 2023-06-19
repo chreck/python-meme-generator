@@ -3,6 +3,7 @@
 The project consist of a CLI and web interface.
 
 ## CLI interface
+
 Before you can use the CLI please go through the installation steps below.
 
 Run `python3 app.py` so it is automatically selecting an image and a quote. By that it creates
@@ -22,9 +23,4 @@ It is recommended to use an virtual environment. So please create a local one wi
 
 ## Generation of custom image
 
-Image source http://127.0.0.1:3000/static/ns8230-image.jpg
-
-
-
-
-
+Image source http://127.0.0.1:5000/static/ns8230-image.jpg

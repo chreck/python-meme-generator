@@ -13,23 +13,23 @@ import random
 import requests
 from flask import Flask, abort, render_template, request
 
-from .config import FONT, PHOTOS_PATH, QUOTE_FILES, STATIC_ROOT, TMP_ROOT
-from .meme import random_image, random_quote, setup_images, setup_quotes
-from .MemeGenerator import MemeEngine
+from app.config import Config
+from app.meme import random_image, random_quote, setup_images, setup_quotes
+from app.MemeGenerator import MemeEngine
 
 
 def setup():
     """Load all resources."""
-    quote_files = QUOTE_FILES
+    quote_files = Config.QUOTE_FILES
     quotes = setup_quotes(quote_files)
-    images_path = PHOTOS_PATH
+    images_path = Config.PHOTOS_PATH
     imgs = setup_images(images_path)
     return quotes, imgs
 
 
 app = Flask(__name__)
 quotes, imgs = setup()
-meme = MemeEngine(STATIC_ROOT)
+meme = MemeEngine(Config.STATIC_ROOT)
 
 
 @app.route("/")
@@ -37,7 +37,7 @@ def meme_rand():
     """Generate a random meme."""
     img = random_image(imgs)
     quote = random_quote(quotes)
-    full_path = meme.make_meme(img, quote.body, quote.author, font=FONT)
+    full_path = meme.make_meme(img, quote.body, quote.author, font=Config.FONT)
     relative_path = pathlib.Path(full_path).relative_to(
         pathlib.Path(__file__).parent.resolve()
     )
@@ -68,9 +68,9 @@ def meme_post():
     in_file = None
     if res.status_code == 200:
         ext = image_url.split(".")[-1]
-        in_file = f"{TMP_ROOT}/{random.randint(0,10000000)}.{ext}"
-        if not os.path.exists(TMP_ROOT):
-            os.makedirs(TMP_ROOT)
+        in_file = f"{Config.TMP_ROOT}/{random.randint(0,10000000)}.{ext}"
+        if not os.path.exists(Config.TMP_ROOT):
+            os.makedirs(Config.TMP_ROOT)
         try:
             with open(in_file, "wb") as out:
                 out.write(res.content)
@@ -88,7 +88,7 @@ def meme_post():
     try:
         # Use the meme object to generate a meme using this temp
         # file and the body and author form paramaters.
-        full_path = meme.make_meme(in_file, body, author, font=FONT)
+        full_path = meme.make_meme(in_file, body, author, font=Config.FONT)
         relative_path = pathlib.Path(full_path).relative_to(
             pathlib.Path(__file__).parent.resolve()
         )
