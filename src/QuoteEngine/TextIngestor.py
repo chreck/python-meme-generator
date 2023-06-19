@@ -13,7 +13,7 @@ class TextIngestor(IngestorInterface):
     """The TextIngestor implementation which supports text files."""
 
     """All allowed file name extensions"""
-    allowed_extensions = ['txt']
+    allowed_extensions = ["txt"]
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
@@ -38,15 +38,17 @@ class TextIngestor(IngestorInterface):
         models = []
         with open(path, "r") as file_ref:
             for line in file_ref.readlines():
-                line = line.strip('\n\r').strip()
+                line = line.strip("\n\r").strip()
                 if len(line) > 0:
-                    parse = line.split(' - ')
+                    parse = line.split(" - ")
                     [quote, author] = parse
                     model = QuoteModel(quote, author)
                     models.append(model)
 
         return models
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()

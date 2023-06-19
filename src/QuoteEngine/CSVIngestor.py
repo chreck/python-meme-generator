@@ -15,7 +15,7 @@ class CSVIngestor(IngestorInterface):
     """The CSVIngestor implementation which supports CSV files."""
 
     """All allowed file name extensions"""
-    allowed_extensions = ['csv']
+    allowed_extensions = ["csv"]
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
@@ -49,4 +49,5 @@ class CSVIngestor(IngestorInterface):
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()

@@ -17,7 +17,9 @@ class MemeEngine:
         """Provide the path where the image can be stored."""
         self.output_dir = output_dir
 
-    def make_meme(self, img_path: str, text: str, author: str, font: str, width: int = 500) -> str:
+    def make_meme(
+        self, img_path: str, text: str, author: str, font: str, width: int = 500
+    ) -> str:
         """Make a meme from the img_path, with a text and the author.
 
         The width you provide will take the aspect ratio into account.
@@ -46,9 +48,7 @@ class MemeEngine:
 
         out_path = f"{self.output_dir}/{random.randint(0,1000000)}.png"
         image_generator = ImageGenerator(
-            input_image=img_path,
-            output_image=out_path,
-            font_file=font
+            input_image=img_path, output_image=out_path, font_file=font
         )
         message = f"{text}\n{author}"
         return image_generator.get_image(message, width)

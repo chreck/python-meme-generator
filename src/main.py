@@ -39,7 +39,8 @@ def make_parser() -> argparse.ArgumentParser:
     )
     return parser
 
+
 if __name__ == "__main__":
     parser = make_parser()
     args = parser.parse_args()
-    print(generate_meme(args.path,args.body,args.author))
+    print(generate_meme(args.path, args.body, args.author))

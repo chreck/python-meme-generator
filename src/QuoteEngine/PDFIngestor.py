@@ -16,7 +16,7 @@ class PDFIngestor(IngestorInterface):
     """The PDFIngestor implementation which supports PDF files."""
 
     """All allowed file name extensions"""
-    allowed_extensions = ['pdf']
+    allowed_extensions = ["pdf"]
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
@@ -40,16 +40,16 @@ class PDFIngestor(IngestorInterface):
         models = []
         tmp: str = None
         try:
-            if not os.path.exists('./tmp'):
-                os.mkdir('./tmp')
-            tmp = f'./tmp/{random.randint(0,100000000)}.txt'
-            subprocess.call(['pdftotext', '-simple', path, tmp])
+            if not os.path.exists("./tmp"):
+                os.mkdir("./tmp")
+            tmp = f"./tmp/{random.randint(0,100000000)}.txt"
+            subprocess.call(["pdftotext", "-simple", path, tmp])
 
             with open(tmp, "r") as file_ref:
                 for line in file_ref.readlines():
-                    line = line.strip('\n\r').strip()
+                    line = line.strip("\n\r").strip()
                     if len(line) > 0:
-                        parse = line.split(' - ')
+                        parse = line.split(" - ")
                         [quote, author] = parse
                         model = QuoteModel(quote, author)
                         models.append(model)
@@ -58,6 +58,8 @@ class PDFIngestor(IngestorInterface):
                 os.remove(tmp)
         return models
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()

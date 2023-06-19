@@ -45,14 +45,14 @@ class ImageGenerator:
             self.image.save(self.output_image)
             return self.output_image
         except Exception as e:
-            raise Exception(f"Could not generate the image from the path '{self.input_image}'. Error: {e}")
+            raise Exception(
+                f"Could not generate the image from the path '{self.input_image}'. Error: {e}"
+            )
 
     def __resize(self):
         """Resize the image to width and height."""
         self.__calculate_height()
-        size = (
-            self.width, self.height
-        )
+        size = (self.width, self.height)
         self.image = self.image.resize(size)
 
     def __calculate_height(self):
@@ -71,25 +71,26 @@ class ImageGenerator:
             self.message,
             align="center",
             font=self.font,
-            fill='black',
+            fill="black",
             stroke_width=self.stroke_width,
-            stroke_fill='white'
+            stroke_fill="white",
         )
 
     def __calculate_message_width(self):
         """Calculate the maximum width of the text itself to center it."""
-        lines = self.message.split('\n')
+        lines = self.message.split("\n")
         max_width = 0
         for line in lines:
             line_width = self.draw.textlength(
-                line, self.font,
+                line,
+                self.font,
             )
             max_width = max(max_width, line_width)
         self.message_width = min(max_width, self.width)
 
     def __calculate_xy_message(self):
         """Calculate the x and y to center the text in the image."""
-        x = (self.width  / 2) - ( self.message_width / 2)
+        x = (self.width / 2) - (self.message_width / 2)
         y = self.height - self.message_height - 50
         self.xy_message = (x, y)
 

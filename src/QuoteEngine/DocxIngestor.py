@@ -15,7 +15,7 @@ class DocxIngestor(IngestorInterface):
     """The DocxIngestor implementation which supports Word Documents docx files."""
 
     """All allowed file name extensions"""
-    allowed_extensions = ['docx']
+    allowed_extensions = ["docx"]
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
@@ -42,13 +42,15 @@ class DocxIngestor(IngestorInterface):
         for para in doc.paragraphs:
             try:
                 if para.text != "":
-                    [quote, author] = para.text.split(' - ')
+                    [quote, author] = para.text.split(" - ")
                     model = QuoteModel(quote, author)
                     models.append(model)
             except:
                 print(f"Could not parse line {para.text}")
         return models
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()

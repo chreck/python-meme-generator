@@ -1,6 +1,6 @@
 """Init file for all ingestors."""
-from .DocxIngestor import DocxIngestor
 from .CSVIngestor import CSVIngestor
-from .PDFIngestor import PDFIngestor
+from .DocxIngestor import DocxIngestor
 from .Ingestor import Ingestor
+from .PDFIngestor import PDFIngestor
 from .QuoteModel import QuoteModel

@@ -18,5 +18,13 @@ It is recommended to use an virtual environment. So please create a local one wi
 
 `pip -r requirements.txt`
 
+# Test
+
+## Generation of custom image
+
+Image source http://127.0.0.1:3000/static/ns8230-image.jpg
+
+
+
 
 

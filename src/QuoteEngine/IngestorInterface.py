@@ -30,7 +30,7 @@ class IngestorInterface(ABC):
         Returns:
             bool: true if we support this file extension
         """
-        ext = path.split('.')[-1]
+        ext = path.split(".")[-1]
         return ext in cls.allowed_extensions
 
     @classmethod
@@ -75,4 +75,3 @@ class IngestorInterface(ABC):
             List[QuoteModel]: A list of QuoteModels
         """
         raise NotImplementedError()
-
