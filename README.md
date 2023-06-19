@@ -68,3 +68,7 @@ The meme generator module `MemeGenerator` has the `MemeEngine` which makes the m
 ## QuoteEngine module
 
 The module `QuoteEngine` takes part of the automatically reading of files which are storing quotes. It can read CSV, Docx, PDF and normal text files.
+
+# Image Copyright
+
+The image `app/static/ns8230-image.jpg` has the https://creativecommons.org/publicdomain/zero/1.0/ license. Image source is from https://www.rawpixel.com/image/5926065/photo-image-background-public-domain-dog
