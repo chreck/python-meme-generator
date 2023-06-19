@@ -1,3 +1,11 @@
+"""The web application to generate a random or custom meme.
+
+You can start the Flask web app i.e. with
+
+`FLASK_APP=app.py`
+`python3 -h 0.0.0.0 -p 3000`
+"""
+
 import os
 import pathlib
 import random
@@ -11,7 +19,7 @@ from .MemeGenerator import MemeEngine
 
 
 def setup():
-    """Load all resources"""
+    """Load all resources."""
     quote_files = QUOTE_FILES
     quotes = setup_quotes(quote_files)
     images_path = PHOTOS_PATH
@@ -26,7 +34,7 @@ meme = MemeEngine(STATIC_ROOT)
 
 @app.route("/")
 def meme_rand():
-    """Generate a random meme"""
+    """Generate a random meme."""
     img = random_image(imgs)
     quote = random_quote(quotes)
     full_path = meme.make_meme(img, quote.body, quote.author, font=FONT)
@@ -38,32 +46,24 @@ def meme_rand():
 
 @app.route("/create", methods=["GET"])
 def meme_form():
-    """User input for meme information"""
+    """User input for meme information."""
     return render_template("meme_form.html")
 
 
 @app.route("/create", methods=["POST"])
 def meme_post():
-    """Create a user defined meme"""
-
-    # @TODO:
-    # 1. Use requests to save the image from the image_url
-    #    form param to a temp local file.
-    # 2. Use the meme object to generate a meme using this temp
-    #    file and the body and author form paramaters.
-    # 3. Remove the temporary saved image.
-
+    """Create a user defined meme."""
     image_url = request.form.get("image_url")
     body = request.form.get("body")
     author = request.form.get("author")
-
-    print(request.form)
 
     if not image_url or not body or not author:
         return render_template(
             "error.html", error="Image url, body or author is not provided"
         )
 
+    # Use requests to save the image from the image_url
+    # form param to a temp local file.
     res = requests.get(image_url)
     in_file = None
     if res.status_code == 200:
@@ -86,11 +86,14 @@ def meme_post():
         )
 
     try:
+        # Use the meme object to generate a meme using this temp
+        # file and the body and author form paramaters.
         full_path = meme.make_meme(in_file, body, author, font=FONT)
         relative_path = pathlib.Path(full_path).relative_to(
             pathlib.Path(__file__).parent.resolve()
         )
     finally:
+        # Remove the temporary saved image.
         os.remove(in_file)
     return render_template("meme.html", path=relative_path)
 
