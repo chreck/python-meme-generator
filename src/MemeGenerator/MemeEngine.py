@@ -4,10 +4,11 @@ Provide the image path, the text and the author of the text.
 Provide the font to be used for the text and author.
 Optionally you can define the width of the image.
 """
-import random
 import os
+import random
 
 from .ImageGenerator import ImageGenerator
+
 
 class MemeEngine:
     """Engine to generate a meme."""

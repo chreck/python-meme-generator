@@ -6,6 +6,7 @@ Getting the image needs the message to be inserted and the width of the image it
 """
 from PIL import Image, ImageDraw, ImageFont
 
+
 class ImageGenerator:
     """Image generator for creating memes."""
 

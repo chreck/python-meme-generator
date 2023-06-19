@@ -3,13 +3,14 @@
 The pdf formatting lines are defined by "quote - author".
 """
 
-from typing import List
-import subprocess
 import os
 import random
+import subprocess
+from typing import List
 
 from .IngestorInterface import IngestorInterface
 from .QuoteModel import QuoteModel
+
 
 class PDFIngestor(IngestorInterface):
     """The PDFIngestor implementation which supports PDF files."""

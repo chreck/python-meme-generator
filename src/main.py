@@ -7,6 +7,7 @@ import pathlib
 
 from .meme import generate_meme
 
+
 def make_parser() -> argparse.ArgumentParser:
     """Create an argument parser for the CLI meme generator.
 

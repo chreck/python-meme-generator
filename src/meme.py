@@ -8,9 +8,10 @@ import os
 import random
 from typing import List
 
-from .config import PHOTOS_PATH, DATA_ROOT, TMP_ROOT, FONT
-from .QuoteEngine import Ingestor, QuoteModel
+from .config import DATA_ROOT, FONT, PHOTOS_PATH, TMP_ROOT
 from .MemeGenerator import MemeEngine
+from .QuoteEngine import Ingestor, QuoteModel
+
 
 def setup_images(image_path=None) -> List | None:
     """Return image files from an image path. Parse the path and return the paths to the images.
@@ -29,7 +30,8 @@ def setup_images(image_path=None) -> List | None:
 
     return image_files
 
-def setup_quotes(quote_files: str=None) -> List[QuoteModel]:
+
+def setup_quotes(quote_files: str = None) -> List[QuoteModel]:
     """Return quotes from a list of quote files. Parse the quote file and extract the quotes.
 
     Args:
@@ -40,10 +42,12 @@ def setup_quotes(quote_files: str=None) -> List[QuoteModel]:
 
     """
     if not quote_files:
-        quote_files = [DATA_ROOT / 'DogQuotes/DogQuotesTXT.txt',
-                       DATA_ROOT / 'DogQuotes/DogQuotesDOCX.docx',
-                       DATA_ROOT / 'DogQuotes/DogQuotesPDF.pdf',
-                       DATA_ROOT / 'DogQuotes/DogQuotesCSV.csv']
+        quote_files = [
+            DATA_ROOT / "DogQuotes/DogQuotesTXT.txt",
+            DATA_ROOT / "DogQuotes/DogQuotesDOCX.docx",
+            DATA_ROOT / "DogQuotes/DogQuotesPDF.pdf",
+            DATA_ROOT / "DogQuotes/DogQuotesCSV.csv",
+        ]
     quotes = []
     for file in quote_files:
         if not os.path.exists(file):
@@ -51,6 +55,7 @@ def setup_quotes(quote_files: str=None) -> List[QuoteModel]:
         quotes.extend(Ingestor.parse(str(file)))
 
     return quotes
+
 
 def random_image(image_files: List[str]) -> str:
     """Generate a random image from image files.
@@ -63,6 +68,7 @@ def random_image(image_files: List[str]) -> str:
     """
     return random.choice(image_files)
 
+
 def random_quote(quotes: List[QuoteModel]) -> QuoteModel:
     """Generate a random quote form a list of quotes.
 
@@ -74,7 +80,8 @@ def random_quote(quotes: List[QuoteModel]) -> QuoteModel:
     """
     return random.choice(quotes)
 
-def generate_meme(path=None, body: str=None, author: str=None) -> str:
+
+def generate_meme(path=None, body: str = None, author: str = None) -> str:
     """Generate a meme from an image and a quote.
 
     Args:
@@ -112,7 +119,7 @@ def generate_meme(path=None, body: str=None, author: str=None) -> str:
         quote = random_quote(quotes)
     else:
         if author is None:
-            raise Exception('Author Required if Body is Used')
+            raise Exception("Author Required if Body is Used")
         quote = QuoteModel(body, author)
 
     meme = MemeEngine(TMP_ROOT)

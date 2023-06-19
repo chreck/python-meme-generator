@@ -8,10 +8,11 @@ document.
 """
 
 from abc import ABC, abstractmethod
-from typing import List
 from os.path import exists
+from typing import List
 
 from .QuoteModel import QuoteModel
+
 
 class IngestorInterface(ABC):
     """Interface of the ingestor."""

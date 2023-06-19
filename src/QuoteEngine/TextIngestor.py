@@ -8,6 +8,7 @@ from typing import List
 from .IngestorInterface import IngestorInterface
 from .QuoteModel import QuoteModel
 
+
 class TextIngestor(IngestorInterface):
     """The TextIngestor implementation which supports text files."""
 

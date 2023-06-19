@@ -1,12 +1,14 @@
+import os
 import pathlib
 import random
-import os
-import requests
-from flask import Flask, render_template, abort, request
 
-from .MemeGenerator import MemeEngine
+import requests
+from flask import Flask, abort, render_template, request
+
+from .config import FONT, PHOTOS_PATH, QUOTE_FILES, STATIC_ROOT, TMP_ROOT
 from .meme import random_image, random_quote, setup_images, setup_quotes
-from .config import PHOTOS_PATH, FONT, STATIC_ROOT, QUOTE_FILES, TMP_ROOT
+from .MemeGenerator import MemeEngine
+
 
 def setup():
     """ Load all resources """
@@ -16,9 +18,11 @@ def setup():
     imgs = setup_images(images_path)
     return quotes, imgs
 
+
 app = Flask(__name__)
 quotes, imgs = setup()
 meme = MemeEngine(STATIC_ROOT)
+
 
 @app.route('/')
 def meme_rand():
@@ -29,10 +33,12 @@ def meme_rand():
     relative_path = pathlib.Path(full_path).relative_to(pathlib.Path(__file__).parent.resolve())
     return render_template('meme.html', path=relative_path)
 
+
 @app.route('/create', methods=['GET'])
 def meme_form():
     """ User input for meme information """
     return render_template('meme_form.html')
+
 
 @app.route('/create', methods=['POST'])
 def meme_post():
@@ -76,6 +82,7 @@ def meme_post():
     finally:
         os.remove(in_file)
     return render_template('meme.html', path=relative_path)
+
 
 if __name__ == "__main__":
     app.run()
