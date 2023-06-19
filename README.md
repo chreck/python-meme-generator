@@ -42,3 +42,29 @@ Run
 - `python3 -m app.QuoteEngine.PDFIngestor`
 
 to test with doctest.
+
+# Implementation
+
+## cli.py
+
+The client interface is saved in the file `cli.py` it parses the arguments, generates the images and returns the path to the generated meme image file.
+
+## config.py
+
+The configuration for the different paths and files where the quotes, images and fonts are saved is defined in the `config.py` file.
+
+## meme.py
+
+The file `meme.py` contains a few helper functions which are used for the CLI and the web interface.
+
+## web.py
+
+The flask web application is implemented in the file `web.py`.
+
+## MemeGenerator module
+
+The meme generator module `MemeGenerator` has the `MemeEngine` which makes the meme by image, text, author. The image generation is encapsulated in the class `ImageGenerator`.
+
+## QuoteEngine module
+
+The module `QuoteEngine` takes part of the automatically reading of files which are storing quotes. It can read CSV, Docx, PDF and normal text files.
