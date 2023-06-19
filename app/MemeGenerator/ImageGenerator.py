@@ -4,6 +4,8 @@ Set input, output image path and the font file which must be used.
 
 Getting the image needs the message to be inserted and the width of the image itself.
 """
+from random import randint
+
 from PIL import Image, ImageDraw, ImageFont
 
 
@@ -92,6 +94,9 @@ class ImageGenerator:
         """Calculate the x and y to center the text in the image."""
         x = (self.width / 2) - (self.message_width / 2)
         y = self.height - self.message_height - 50
+        # select the position a bit more randomly
+        x += randint(0, 50)
+        y -= randint(0, 50)
         self.xy_message = (x, y)
 
     def __calculate_message_height(self):
