@@ -1,9 +1,8 @@
 """The web application to generate a random or custom meme.
 
-You can start the Flask web app i.e. with
+You can start the Flask web app with
 
-`FLASK_APP=app.py`
-`python3 -h 0.0.0.0 -p 3000`
+`flask -A app.web run -h 0.0.0.0 -p 3000`
 """
 
 import os

@@ -4,6 +4,8 @@ import pathlib
 
 
 class Config:
+    """Configuration file paths for this application."""
+
     PROJECT_ROOT = pathlib.Path(__file__).parent.resolve()
     DATA_ROOT = PROJECT_ROOT / "_data"
     FONTS_ROOT = DATA_ROOT / "fonts"

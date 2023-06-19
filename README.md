@@ -20,13 +20,13 @@ the "Creator" button you can specify the image to download, the body and the aut
 
 # Installation
 
-It is recommended to use an virtual environment. So please create a local one with
+It is recommended to use a virtual environment. So please create a local one with
 
 `python3 -m venv venv`
 
 `source venv/bin/active`
 
-After that you can install the dependencies for this project over the terminal command.
+After that you can install the dependencies for this project over the terminal command:
 
 `pip -r requirements.txt`
 
