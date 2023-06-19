@@ -21,7 +21,8 @@ class CSVIngestor(IngestorInterface):
     def parse(cls, path: str) -> List[QuoteModel]:
         """Parse docx files and returns QuoteModel instances.
 
-        >>> len(CSVIngestor.parse('./_data/DogQuotes/DogQuotesCSV.csv'))
+        >>> from app.config import Config
+        >>> len(CSVIngestor.parse(str(Config.DATA_ROOT / 'DogQuotes/DogQuotesCSV.csv')))
         2
 
         Args:

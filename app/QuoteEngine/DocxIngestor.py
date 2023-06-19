@@ -21,7 +21,8 @@ class DocxIngestor(IngestorInterface):
     def parse(cls, path: str) -> List[QuoteModel]:
         """Parse docx files and returns QuoteModel instances.
 
-        >>> len(DocxIngestor.parse('./_data/DogQuotes/DogQuotesDOCX.docx'))
+        >>> from app.config import Config
+        >>> len(DocxIngestor.parse(str(Config.DATA_ROOT / 'DogQuotes/DogQuotesDOCX.docx')))
         4
 
         Args:

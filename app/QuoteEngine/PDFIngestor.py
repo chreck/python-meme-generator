@@ -22,7 +22,8 @@ class PDFIngestor(IngestorInterface):
     def parse(cls, path: str) -> List[QuoteModel]:
         """Parse pdf files and returns QuoteModel instances.
 
-        >>> len(PDFIngestor.parse('./_data/DogQuotes/DogQuotesPDF.pdf'))
+        >>> from app.config import Config
+        >>> len(PDFIngestor.parse(str(Config.DATA_ROOT / 'DogQuotes/DogQuotesPDF.pdf')))
         3
 
         Args:

@@ -18,8 +18,8 @@ class TextIngestor(IngestorInterface):
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
         """Parse text files and returns QuoteModel instances.
-
-        >>> len(TextIngestor.parse('./_data/DogQuotes/DogQuotesTXT.txt'))
+        >>> from app.config import Config
+        >>> len(TextIngestor.parse(str(Config.DATA_ROOT / 'DogQuotes/DogQuotesTXT.txt')))
         2
 
         Args:
