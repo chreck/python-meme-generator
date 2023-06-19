@@ -1,6 +1,8 @@
 venv
 tmp
 _tmp
+static
+!app/static/ns8230.jpg
 __pycache__
 
 # Created by https://www.toptal.com/developers/gitignore/api/python,macos
