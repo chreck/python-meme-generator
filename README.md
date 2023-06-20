@@ -28,7 +28,18 @@ It is recommended to use a virtual environment. So please create a local one wit
 
 After that you can install the dependencies for this project over the terminal command:
 
+`python -m pip install --upgrade pip`
 `pip -r requirements.txt`
+
+## Linux
+
+`sudo apt-get install -y xpdf`
+
+## macOS
+
+Use the command line tool brew to install the pdftotext tool. Please install first (brew)[http://brew.sh] if not already done.
+
+`brew install xpdf`
 
 # Test
 
