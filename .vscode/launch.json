@@ -5,17 +5,30 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Python: CLI",
+            "type": "python",
+            "request": "launch",
+            "module": "app.cli",
+            "justMyCode": true
+        },
+        {
             "name": "Python: Flask",
             "type": "python",
             "request": "launch",
             "module": "flask",
-            "env":{
-                "FLASK_APP": "src/app.py",
+            "env": {
+                "FLASK_APP": "app.web",
                 "FLASH_DEBUG": "1"
             },
             "jinja": true,
             "justMyCode": true,
-            "args": ["run","--no-debugger","--no-reload","--port","3000"]
+            "args": [
+                "run",
+                "--no-debugger",
+                "--no-reload",
+                "--port",
+                "3000"
+            ]
         }
     ]
 }
