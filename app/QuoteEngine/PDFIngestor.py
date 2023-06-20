@@ -4,6 +4,7 @@ The pdf formatting lines are defined by "quote - author".
 """
 
 import os
+import platform
 import random
 import subprocess
 from typing import List
@@ -44,8 +45,10 @@ class PDFIngestor(IngestorInterface):
             if not os.path.exists("./tmp"):
                 os.mkdir("./tmp")
             tmp = f"./tmp/{random.randint(0,100000000)}.txt"
-            subprocess.call(["pdftotext", "-simple", path, tmp])
-
+            process_args = ["pdftotext", path, tmp]
+            if platform.system() == "Darwin":
+                process_args = ["pdftotext", "-simple", path, tmp]
+            subprocess.call(process_args)
             with open(tmp, "r") as file_ref:
                 for line in file_ref.readlines():
                     line = line.strip("\n\r").strip()
