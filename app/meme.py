@@ -13,7 +13,7 @@ from app.MemeGenerator import MemeEngine
 from app.QuoteEngine import Ingestor, QuoteModel
 
 
-def setup_images(image_path=None) -> List | None:
+def setup_images(image_path=None) -> List:
     """Return image files from an image path. Parse the path and return the paths to the images.
 
     Args:
