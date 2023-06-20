@@ -38,6 +38,10 @@ class PDFIngestor(IngestorInterface):
         """
         cls.can_ingest_or_throw(path)
         cls.check_path_exists_or_throw(path)
+        if not cls.__is_tool_available("pdftotext"):
+            raise Exception(
+                "The tool pdftotext is not available. Run sudo apt-get install -y xpdf"
+            )
 
         models = []
         tmp: str = None
@@ -61,6 +65,13 @@ class PDFIngestor(IngestorInterface):
             if tmp:
                 os.remove(tmp)
         return models
+
+    @classmethod
+    def __is_tool_available(cls, name) -> bool:
+        """Verify if a specific system tool is available or not."""
+        from shutil import which
+
+        return which(name) is not None
 
 
 if __name__ == "__main__":
