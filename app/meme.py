@@ -8,9 +8,9 @@ import os
 import random
 from typing import List
 
-from app.config import Config
-from app.MemeGenerator import MemeEngine
-from app.QuoteEngine import Ingestor, QuoteModel
+from config import Config
+from MemeGenerator import MemeEngine
+from QuoteEngine import Ingestor, QuoteModel
 
 
 def setup_images(image_path=None) -> List:

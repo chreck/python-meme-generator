@@ -12,9 +12,9 @@ import random
 import requests
 from flask import Flask, abort, render_template, request
 
-from app.config import Config
-from app.meme import random_image, random_quote, setup_images, setup_quotes
-from app.MemeGenerator import MemeEngine
+from config import Config
+from meme import random_image, random_quote, setup_images, setup_quotes
+from MemeGenerator import MemeEngine
 
 
 def setup():

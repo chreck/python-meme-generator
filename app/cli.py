@@ -5,7 +5,7 @@ Calling this file to run the CLI.
 import argparse
 import pathlib
 
-from app.meme import generate_meme
+from meme import generate_meme
 
 
 def make_parser() -> argparse.ArgumentParser:
