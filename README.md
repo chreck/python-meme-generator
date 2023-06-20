@@ -1,12 +1,12 @@
 # Project
 
-Create a meme with an image and a text message. To generate the meme you can use the CLI and or the web interface.
+Create a meme with an image and a text message. To generate the meme you can use the CLI and/or the web interface.
 
 ## CLI interface
 
 Before you can use the CLI please go through the installation steps below.
 
-Run `python3 -m app.cli` so it is automatically selecting an image and a quote. By that it creates
+Run `python3.9 -m app.cli` so it is automatically selecting an image and a quote. By that it creates
 a meme image and returns the path to the generated image. To use a specific image enter the `--path`, and
 to use a specific body text enter it over `--body` and also enter the `--author`. If you enter the body you also
 need to enter the author.
@@ -20,20 +20,25 @@ the "Creator" button you can specify the image to download, the body and the aut
 
 # Installation
 
+To run this project you need a proper python 3.9 environment. With python 3.6 I was having some issues. Read more about it in ISSUES.md
+
+## Use venv
+
 It is recommended to use a virtual environment. So please create a local one with
 
-`python3 -m venv venv`
+`python3.9 -m venv venv`
 
 `source venv/bin/active`
 
+`python -m pip install --upgrade pip`
+
 After that you can install the dependencies for this project over the terminal command:
 
-`python -m pip install --upgrade pip`
-`pip -r requirements.txt`
+`pip install -r requirements.txt`
 
-## Linux
+## Debian Linux (Ubuntu)
 
-`sudo apt-get install -y xpdf`
+`sudo apt-get install -y xpdf libjpeg-dev`
 
 ## macOS
 
@@ -47,10 +52,10 @@ In the QuoteEngine are a few doctest implemented
 
 Run
 
-- `python3 -m app.QuoteEngine.TextIngestor`
-- `python3 -m app.QuoteEngine.CSVIngestor`
-- `python3 -m app.QuoteEngine.DocxIngestor`
-- `python3 -m app.QuoteEngine.PDFIngestor`
+- `python3.9 -m app.QuoteEngine.TextIngestor`
+- `python3.9 -m app.QuoteEngine.CSVIngestor`
+- `python3.9 -m app.QuoteEngine.DocxIngestor`
+- `python3.9 -m app.QuoteEngine.PDFIngestor`
 
 to test with doctest.
 
