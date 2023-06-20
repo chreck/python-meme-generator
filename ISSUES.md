@@ -12,9 +12,9 @@ Using a Macintosh with a M1 CPU let not run python 3.6 anymore so I decided to g
 
 # Run application with python 3.6 and 3.9
 
-I tried several steps to install python 3.6 on the machine but all failed. Also installing a newer version of python like 3.9 failed in the end.
+I tried several steps to install python 3.6 on the machine macOS machine but all failed. Also installing a newer version of python like 3.9 in the udacity workspace failed in the end.
 
-## Use pipenv instead - failed
+## pipenv - failed
 
 `python -m pip install --upgrade pip`
 `pip install pipenv`
@@ -23,7 +23,7 @@ I tried several steps to install python 3.6 on the machine but all failed. Also 
 
 Pipenv shell fails with `termios.error: (25, 'Inappropriate ioctl for device')`
 
-## Upgrade to version python 3.9 - failed
+## python 3.9 - failed
 
 Follow the instructions at https://prodisup.com/posts/2021/03/installing-python3.9-on-ubuntu-16.04-xenial/
 
@@ -33,11 +33,7 @@ Follow the instructions at https://prodisup.com/posts/2021/03/installing-python3
 `add-apt-repository ppa:deadsnakes/ppa`
 `apt-get update`
 
-## Using python 3.6 with pandas
-
-Did not work because module pandas for CSV interpretation failed to install over pip.
-
-## Install python 3.9 manually
+## python 3.9 manually - failed
 
 ```shell
 sudo apt update
@@ -53,7 +49,7 @@ make install
 
 Failed because of OpenSSL version 1.1.1+ was missing for python 3.9
 
-## Use pyenv
+## pyenv
 
 This is installation steps are tested on an Ubuntu 16.4 Xenial
 
