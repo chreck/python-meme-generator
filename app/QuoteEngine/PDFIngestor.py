@@ -40,7 +40,7 @@ class PDFIngestor(IngestorInterface):
         cls.check_path_exists_or_throw(path)
         if not cls.__is_tool_available("pdftotext"):
             raise Exception(
-                "The tool pdftotext is not available. Run sudo apt-get install -y xpdf"
+                "The tool pdftotext is not available. Please first install the tool."
             )
 
         models = []
